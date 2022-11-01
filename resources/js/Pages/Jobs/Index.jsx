@@ -3,8 +3,10 @@ import BaseLayout from '@/Layouts/BaseLayout';
 import { Head, Link } from '@inertiajs/inertia-react';
 import Moment from 'moment';
 import { BiBuildings, BiBriefcase, BiMap, BiSearch } from 'react-icons/bi';
+import Pagination from '@/Components/Pagination';
 
 export default function Index(props) {
+    console.log(props.jobs);
     const formatDate = (date) => Moment(date).format('DD MMMM YYYY');
 
     const formatContractType = (contractType) => {
@@ -48,9 +50,9 @@ export default function Index(props) {
             
             <div className="bg-white pt-4 overflow-hidden sm:rounded-lg">
                 <div className='grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-6'>
-                    <div className="order-last md:order-none">
+                    <div className="flex flex-col order-last md:order-none">
                         <h2 className="text-2xl font-semibold">Daftar Pekerjaan Terbaru</h2>
-                        {props.jobs.map((job) => (
+                        {props.jobs.data.map((job) => (
                             <div key={job.id} className="flex flex-col gap-2 sm:gap-0 sm:flex-row sm:justify-between mt-4 p-4 border-gray-200 border rounded w-full">
                                 <div className="flex gap-2">
                                     <img className="rounded" src={job.company_logo} width="100" height="100" />
@@ -81,6 +83,10 @@ export default function Index(props) {
                                 </div>
                             </div>
                         ))}
+
+                        <div className="flex justify-center">
+                            <Pagination links={props.jobs.links} />
+                        </div>
                     </div>
                     <div>
                         <div className="flex items-center relative">

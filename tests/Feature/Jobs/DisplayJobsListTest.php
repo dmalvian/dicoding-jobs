@@ -25,9 +25,32 @@ class DisplayJobsListTest extends TestCase
 
         $response = $this->get(route('jobs.index'));
 
-        $jobs = Job::get();
         $response->assertInertia(
             fn (Assert $page) => $page
-                ->where('jobs', $jobs));
+                ->has('jobs'));
+    }
+
+    public function test_job_list_page_has_correct_max_number_of_data_in_a_page()
+    {
+        Job::factory()->count(10)->create();
+        $maxItemsPerPage = 8;
+
+        $response = $this->get(route('jobs.index'));
+
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->has('jobs.data', $maxItemsPerPage));
+    }
+
+    public function test_job_list_page_has_correct_data_when_paginated()
+    {
+        Job::factory()->count(10)->create();
+
+        $response = $this->get(route('jobs.index', ['page' => '2']));
+
+        $jobs = Job::latest()->paginate(8);
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->where('jobs.data', $jobs->toArray()['data']));
     }
 }

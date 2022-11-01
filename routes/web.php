@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    return Inertia::render('Jobs/Index', ['jobs' => App\Models\Job::get()]);
+    return Inertia::render('Jobs/Index', ['jobs' => App\Models\Job::latest()->paginate(8)]);
 })->name('jobs.index');
 
 Route::get('/dashboard', function () {
