@@ -2,7 +2,7 @@ import React from 'react';
 import BaseLayout from '@/Layouts/BaseLayout';
 import { Head } from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function Index(props) {
     return (
         <BaseLayout
             auth={props.auth}
