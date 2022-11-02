@@ -39,6 +39,16 @@ class JobApplicationController extends Controller
                 ->with('message', 'Maaf, Anda hanya dapat memiliki maksimal tiga lamaran aktif.');
         }
 
+        if (
+            JobApplication::where('user_id', $user->id)
+                ->where('job_id', $job->id)
+                ->exists()
+        ) {
+            return redirect()
+                ->route('jobs.show', ['job' => $job->id])
+                ->with('message', 'Maaf, Anda sudah pernah melamar pekerjaan ini.');
+        }
+
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -46,5 +56,21 @@ class JobApplicationController extends Controller
             'cover_letter' => 'required',
             'cv_link' => 'required|url',
         ]);
+
+        JobApplication::create([
+            'user_id' => $user->id,
+            'job_id' => $job->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'cover_letter' => $request->cover_letter,
+            'cv_link' => $request->cv_link,
+            'skills' => $request->skills,
+            'other' => $request->other,
+        ]);
+
+        return redirect()
+                ->route('jobs.show', ['job' => $job->id])
+                ->with('message', 'Lamaran Anda telah berhasil dikirimkan.');
     }
 }

@@ -92,4 +92,40 @@ class StoreJobApplicationTest extends TestCase
 
         $response->assertInvalid(['email', 'cv_link']);
     }
+
+    public function test_should_fail_if_apply_same_job_twice()
+    {
+        $user = User::factory()->create();
+        $job = Job::factory()->create();
+        $application = JobApplication::factory()->make([
+            'user_id' => $user->id,
+            'job_id' => $job->id,
+        ]);
+        $payload = $application->toArray();
+        $application->save();
+
+        $response = $this->actingAs($user)
+            ->post(route('jobs.applications.store', ['job' => $job->id]), $payload);
+
+        $response->assertRedirect(route('jobs.show', ['job' => $job->id]));
+        $response->assertSessionHas('message', 'Maaf, Anda sudah pernah melamar pekerjaan ini.');
+    }
+
+    public function test_can_apply_a_job_if_meet_all_requirements()
+    {
+        $user = User::factory()->create();
+        $job = Job::factory()->create();
+        $application = JobApplication::factory()->make([
+            'user_id' => $user->id,
+            'job_id' => $job->id,
+        ])->toArray();
+
+        $response = $this->actingAs($user)
+            ->post(route('jobs.applications.store', ['job' => $job->id]), $application);
+
+        $response->assertRedirect(route('jobs.show', ['job' => $job->id]));
+        $response->assertSessionHas('message', 'Lamaran Anda telah berhasil dikirimkan.');
+        $this->assertDatabaseCount('job_applications', 1);
+        $this->assertDatabaseHas('job_applications', $application);
+    }
 }
