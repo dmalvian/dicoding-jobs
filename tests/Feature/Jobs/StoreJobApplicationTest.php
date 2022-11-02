@@ -27,4 +27,15 @@ class StoreJobApplicationTest extends TestCase
         $response->assertRedirect(route('jobs.index'));
         $response->assertSessionHas('message', 'Pekerjaan yang Anda cari tidak ditemukan!');
     }
+
+    public function test_should_fail_when_deadline_is_over()
+    {
+        $user = User::factory()->create();
+        $job = Job::factory()->create(['expired_at' => today()->subDays(3)]);
+
+        $response = $this->actingAs($user)->post(route('jobs.applications.store', ['job' => $job->id]));
+
+        $response->assertRedirect(route('jobs.show', ['job' => $job->id]));
+        $response->assertSessionHas('message', 'Masa pembukaan lamaran pekerjaan telah berakhir.');
+    }
 }

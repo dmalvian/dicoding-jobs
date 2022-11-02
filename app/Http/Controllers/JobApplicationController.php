@@ -20,6 +20,10 @@ class JobApplicationController extends Controller
 
     public function store(Job $job)
     {
-        
+        if (today()->greaterThan($job->expired_at)) {
+            return redirect()
+                ->route('jobs.show', ['job' => $job->id])
+                ->with('message', 'Masa pembukaan lamaran pekerjaan telah berakhir.');
+        }
     }
 }
