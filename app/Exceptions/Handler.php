@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->is('jobs/*') && $e->getPrevious() instanceof ModelNotFoundException) {
-                return redirect()->route('jobs.index')->with('message', 'Pekerjaan yang Anda cari tidak ditemukan!');;
+                return redirect()->route('jobs.index')->with('message', 'Pekerjaan yang Anda cari tidak ditemukan!');
             }
         });
     }

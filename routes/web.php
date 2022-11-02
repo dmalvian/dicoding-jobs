@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::resource('jobs', JobController::class)->only(['index', 'show']);
 
-Route::resource('jobs.applications', JobApplicationController::class)->only(['create']);
+Route::resource('jobs.applications', JobApplicationController::class)->only(['create', 'store']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

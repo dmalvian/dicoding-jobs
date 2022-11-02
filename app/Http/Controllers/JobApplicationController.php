@@ -17,4 +17,9 @@ class JobApplicationController extends Controller
     {
         return Inertia::render('Jobs/Applications/Create', ['job' => $job]);
     }
+
+    public function store(Job $job)
+    {
+        
+    }
 }
