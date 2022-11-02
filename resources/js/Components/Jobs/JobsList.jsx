@@ -9,7 +9,7 @@ export default function JobList({ jobs, formatDate, formatContractType, formatEx
                 <div className="flex gap-2">
                     <img className="rounded" src={job.company_logo} width="100" height="100" />
                     <div>
-                        <Link href="#" className="font-semibold">{job.title}</Link>
+                        <Link href={route('jobs.show', job.id)} className="font-semibold">{job.title}</Link>
                         <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
                             <div className="flex gap-2">
                                 <BiBuildings />
