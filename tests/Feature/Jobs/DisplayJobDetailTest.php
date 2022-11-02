@@ -29,7 +29,7 @@ class DisplayJobDetail extends TestCase
         $response->assertSessionHas('message', 'Pekerjaan yang Anda cari tidak ditemukan!');
     }
 
-    public function test_job_detail_page_contains_required_data_if_job_is_found()
+    public function test_job_detail_page_contains_required_data()
     {
         $job = Job::factory()->create();
 
