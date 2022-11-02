@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::resource('/jobs', JobController::class)->only(['index', 'show']);
 
 Route::get('/jobs/{job}/applications/create', function (\App\Models\Job $job) {
-
+    return Inertia::render('Jobs/Applications/Create', ['job' => $job]);
 })->middleware(['auth'])->name('jobs.applications.create');
 
 Route::get('/dashboard', function () {
