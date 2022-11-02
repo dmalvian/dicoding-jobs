@@ -31,7 +31,7 @@ export default function JobList({ jobs, formatDate, formatContractType, formatEx
                 </div>
                 <div>
                     <p className="text-xs text-gray-700">Dibuat pada {formatDate(job.created_at)}</p>
-                    <p className="text-xs text-gray-700">Lamar sebelum {formatDate(job.expiredAt)}</p>
+                    <p className="text-xs text-gray-700">Lamar sebelum {formatDate(job.expired_at)}</p>
                 </div>
             </div>
         ))

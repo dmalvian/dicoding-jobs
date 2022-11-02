@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('company_location');
             $table->string('company_logo');
+            $table->enum('company_size', ['1-50', '50-100', '100-250', '250-1000', '>1000']);
             $table->string('title');
             $table->string('role');
             $table->enum('contract_type', ['fulltime', 'freelance', 'intern', 'remote']);
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->text('responsibilities');
             $table->string('skills');
             $table->string('business_sector');
-            $table->date('expiredAt');
+            $table->date('expired_at');
             $table->timestamps();
         });
     }
