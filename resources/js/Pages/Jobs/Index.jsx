@@ -45,7 +45,7 @@ export default function Index(props) {
             
                 <div className="bg-white rounded-t-3xl">
                     <div className="overflow-hidden max-w-7xl mx-auto pt-16 py-6 px-4 sm:px-6 lg:px-8">
-                        <div className='grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-6'>
+                        <div className="grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-6">
                             <div className="flex flex-col order-last md:order-none">
                                 <h2 className="text-2xl font-semibold">Daftar Pekerjaan Terbaru</h2>
                                 <JobsList

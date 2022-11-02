@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function TextInput({
-    type = 'text',
+export default function TextArea({
     name,
     value,
     className,
@@ -21,8 +20,7 @@ export default function TextInput({
 
     return (
         <div className="flex flex-col items-start">
-            <input
-                type={type}
+            <textarea
                 name={name}
                 value={value}
                 className={

@@ -12,7 +12,7 @@ export default function Detail({ auth, errors, job }) {
             auth={auth}
             errors={errors}>
 
-            <Head title="Jobs List" />
+            <Head title="Job Detail" />
 
             <div className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex">
@@ -33,7 +33,7 @@ export default function Detail({ auth, errors, job }) {
                                         <BiMap />
                                         <p className="text-xs text-gray-700">{job.company_location}</p>
                                         <FiUsers />
-                                        <p className="text-xs text-gray-700">50 - 100 Karyawan</p>
+                                        <p className="text-xs text-gray-700">{job.company_size} Karyawan</p>
                                     </div>
                                 </div>
                             </div>
@@ -43,9 +43,6 @@ export default function Detail({ auth, errors, job }) {
                                 <Link className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex">
-
                     </div>
                 </div>
                 <div className="border border-b-0 border-gray-200 mt-8 md:mt-12 mb-8"></div>
