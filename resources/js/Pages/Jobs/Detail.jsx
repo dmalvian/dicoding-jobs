@@ -4,7 +4,6 @@ import { Head, Link } from '@inertiajs/inertia-react';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { BiBuildings, BiMap  } from 'react-icons/bi';
 import { FiUsers, FiHeart, FiShare } from 'react-icons/fi';
-import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function Detail({ auth, errors, job }) {
     return (
@@ -17,7 +16,7 @@ export default function Detail({ auth, errors, job }) {
             <div className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex">
                     <div className="w-full flex flex-col gap-2">
-                        <Link src={route('jobs.index')}>
+                        <Link href={route('jobs.index')}>
                             <span className="text-xs underline">Semua daftar pekerjaan</span>
                             <FiArrowUpRight className="inline ml-2 text-blue-400" />
                         </Link>
@@ -40,7 +39,7 @@ export default function Detail({ auth, errors, job }) {
                             <div className="flex justify-end">
                                 <button className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 focus:shadow-outline"><FiShare /></button>
                                 <button className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 focus:shadow-outline"><FiHeart /></button>
-                                <Link className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
+                                <Link href={route('jobs.applications.create', job.id)} className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
                             </div>
                         </div>
                     </div>

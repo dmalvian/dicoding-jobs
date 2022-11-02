@@ -43,17 +43,23 @@ export default function Create({ auth, job }) {
                         <div>
                             <h1 className="text-2xl font-semibold mb-4">Informasi Lowongan</h1>
                             <div className="flex gap-2">
-                                <img className="rounded" src={job.company_logo} width="100" height="100" />
+                                <img className="rounded" src={job.company_logo} width="128" height="128" />
                                 <div className="flex flex-col gap-2">
                                     <h1 className="text-2xl font-semibold">{job.title}</h1>
                                     <p className="text-sm font-semibold text-gray-700">Sektor Bisnis: {job.business_sector}</p>
-                                    <div className="flex gap-2">
-                                        <BiBuildings />
-                                        <p className="text-xs text-gray-700">{job.company_name}</p>
-                                        <BiMap />
-                                        <p className="text-xs text-gray-700">{job.company_location}</p>
-                                        <FiUsers />
-                                        <p className="text-xs text-gray-700">{job.company_size} Karyawan</p>
+                                    <div className="flex flex-col gap-2">
+                                        <div className="flex gap-1">
+                                            <BiBuildings />
+                                            <p className="text-xs text-gray-700">{job.company_name}</p>
+                                        </div>
+                                        <div className="flex gap-1">
+                                            <BiMap />
+                                            <p className="text-xs text-gray-700">{job.company_location}</p>
+                                        </div>
+                                        <div className="flex gap-1">
+                                            <FiUsers />
+                                            <p className="text-xs text-gray-700">{job.company_size} Karyawan</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +76,6 @@ export default function Create({ auth, job }) {
                                         value={data.name}
                                         className="mt-1 block w-full"
                                         autoComplete="name"
-                                        isFocused={true}
                                         readOnly
                                     />
 
@@ -99,6 +104,7 @@ export default function Create({ auth, job }) {
                                         value={data.phone}
                                         className="mt-1 block w-full"
                                         autoComplete="phone"
+                                        isFocused={true}
                                         handleChange={onHandleChange}
                                         required
                                     />
