@@ -4,6 +4,7 @@ namespace Tests\Feature\Jobs;
 
 use App\Models\User;
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -37,5 +38,25 @@ class StoreJobApplicationTest extends TestCase
 
         $response->assertRedirect(route('jobs.show', ['job' => $job->id]));
         $response->assertSessionHas('message', 'Masa pembukaan lamaran pekerjaan telah berakhir.');
+    }
+
+    public function test_should_fail_if_applicant_has_more_than_3_active_applications()
+    {
+        $user = User::factory()->create();
+        $appliedJobs = Job::factory()->count(3)->create();
+        $unappliedJob = Job::factory()->create();
+    
+        foreach ($appliedJobs as $job) {
+            JobApplication::factory()->count(3)->create([
+                'user_id' => $user->id,
+                'job_id' => $job->id,
+                'status' => 'active'
+            ]);
+        }
+
+        $response = $this->actingAs($user)->post(route('jobs.applications.store', ['job' => $unappliedJob->id]));
+
+        $response->assertRedirect(route('jobs.show', ['job' => $unappliedJob->id]));
+        $response->assertSessionHas('message', 'Maaf, Anda hanya dapat memiliki maksimal tiga lamaran aktif.');
     }
 }
