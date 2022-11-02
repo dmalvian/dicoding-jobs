@@ -12,4 +12,9 @@ class JobController extends Controller
     {
         return Inertia::render('Jobs/Index', ['jobs' => Job::latest()->paginate(8)]);
     }
+
+    public function show(Job $job)
+    {
+        
+    }
 }
