@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,17 +18,9 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return redirect()->route('jobs.index');
-    // return Inertia::render('Welcome', [
-    //     'canLogin' => Route::has('login'),
-    //     'canRegister' => Route::has('register'),
-    //     'laravelVersion' => Application::VERSION,
-    //     'phpVersion' => PHP_VERSION,
-    // ]);
 });
 
-Route::get('/jobs', function () {
-    return Inertia::render('Jobs/Index', ['jobs' => App\Models\Job::latest()->paginate(8)]);
-})->name('jobs.index');
+Route::resource('/jobs', JobController::class)->only(['index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
