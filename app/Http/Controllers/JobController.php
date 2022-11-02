@@ -15,6 +15,6 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
-        
+        return Inertia::render('Jobs/Detail', ['job' => $job]);
     }
 }

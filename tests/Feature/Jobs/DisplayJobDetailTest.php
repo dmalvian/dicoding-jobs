@@ -28,4 +28,28 @@ class DisplayJobDetail extends TestCase
         $response->assertRedirect(route('jobs.index'));
         $response->assertSessionHas('message', 'Pekerjaan yang Anda cari tidak ditemukan!');
     }
+
+    public function test_job_detail_page_contains_required_data_if_job_is_found()
+    {
+        $job = Job::factory()->create();
+
+        $response = $this->get(route('jobs.show', ['job' => $job->id]));
+
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->has('job'));
+    }
+
+    public function test_job_detail_page_contains_correct_job_data()
+    {
+        $jobs = Job::factory()->count(3)->create();
+
+        $response = $this->get(route('jobs.show', ['job' => $jobs[1]->id]));
+
+
+        $job = Job::find($jobs[1]->id);
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->where('job', $job));
+    }
 }
