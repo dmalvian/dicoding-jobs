@@ -4,9 +4,9 @@ import { Link } from '@inertiajs/inertia-react';
 export default function Pagination({ links }) {
     const getClassName = (active) => {
         if (active) {
-            return "p-2 text-sm font-semibold leading-4 border border-l-0 first:border-l bg-indigo-900 text-white first:rounded-l last:rounded-r";
+            return "p-2 text-sm font-semibold leading-4 border border-l-0 first:border-l bg-navy text-white first:rounded-l last:rounded-r";
         } else {
-            return "p-2 text-sm font-semibold leading-4 border border-l-0 first:border-l bg-white text-indigo-900 first:rounded-l last:rounded-r";
+            return "p-2 text-sm font-semibold leading-4 border border-l-0 first:border-l bg-white text-navy first:rounded-l last:rounded-r";
         }
     }
 

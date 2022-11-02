@@ -96,13 +96,13 @@ export default function NavBar({ auth }) {
                     ) : (
                         <div className="hidden sm:flex sm:items-center sm:space-x-2">
                             <Link
-                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-900 transition-colors duration-150 bg-white rounded focus:shadow-outline hover:text-white hover:bg-indigo-900"
+                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-navy transition-colors duration-150 bg-white text-navy rounded focus:shadow-outline hover:text-white hover:bg-navy"
                                 href={route("login")}
                             >
                                 Login
                             </Link>
                             <Link
-                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-white transition-colors duration-150 bg-indigo-900 rounded focus:shadow-outline"
+                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-white transition-colors duration-150 bg-navy rounded focus:shadow-outline"
                                 href={route("register")}
                             >
                                 Register
@@ -157,13 +157,13 @@ export default function NavBar({ auth }) {
                     ) : (
                         <div className="flex items-center space-x-2">
                             <Link
-                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-900 transition-colors duration-150 bg-white rounded focus:shadow-outline hover:text-white hover:bg-indigo-900"
+                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-navy transition-colors duration-150 bg-white rounded focus:shadow-outline hover:text-white hover:bg-navy"
                                 href={route("login")}
                             >
                                 Login
                             </Link>
                             <Link
-                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-white transition-colors duration-150 bg-indigo-900 rounded focus:shadow-outline"
+                                className="inline-flex items-center h-8 px-4 m-2 text-sm text-white transition-colors duration-150 bg-navy rounded focus:shadow-outline"
                                 href={route("register")}
                             >
                                 Register
