@@ -22,6 +22,10 @@ Route::get('/', function () {
 
 Route::resource('/jobs', JobController::class)->only(['index', 'show']);
 
+Route::get('/jobs/{job}/applications/create', function (\App\Models\Job $job) {
+
+})->middleware(['auth'])->name('jobs.applications.create');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
