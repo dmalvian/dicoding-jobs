@@ -20,4 +20,12 @@ class DisplayJobDetail extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_job_detail_page_should_redirect_to_jobs_list_page_if_job_is_not_found()
+    {
+        $response = $this->get(route('jobs.show', ['job' => 'x']));
+
+        $response->assertRedirect(route('jobs.index'));
+        $response->assertSessionHas('message', 'Pekerjaan yang Anda cari tidak ditemukan!');
+    }
 }
