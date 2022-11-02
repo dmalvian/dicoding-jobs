@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobApplicationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,11 +21,9 @@ Route::get('/', function () {
     return redirect()->route('jobs.index');
 });
 
-Route::resource('/jobs', JobController::class)->only(['index', 'show']);
+Route::resource('jobs', JobController::class)->only(['index', 'show']);
 
-Route::get('/jobs/{job}/applications/create', function (\App\Models\Job $job) {
-    return Inertia::render('Jobs/Applications/Create', ['job' => $job]);
-})->middleware(['auth'])->name('jobs.applications.create');
+Route::resource('jobs.applications', JobApplicationController::class)->only(['create']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
