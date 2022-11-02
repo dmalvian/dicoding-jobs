@@ -1,3 +1,12 @@
-body {
-    font-family: 'Inter', sans-serif;
+.bg-header {
+    background: url('../images/header-arrow.png'), #18181B;
+    background-size: 150%;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+    .bg-header {
+        background-size: 75%;
+    }
 }

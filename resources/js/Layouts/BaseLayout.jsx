@@ -7,7 +7,7 @@ export default function BaseLayout({ auth, children }) {
         <div className="min-h-screen bg-white">
             <NavBar auth={auth} />
 
-            <main className="max-w-7xl mx-auto pt-16 py-6 px-4 sm:px-6 lg:px-8">{children}</main>
+            <main>{children}</main>
 
             <Footer />
         </div>
