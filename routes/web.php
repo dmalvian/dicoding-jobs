@@ -20,7 +20,7 @@ Route::get('/', function () {
     return redirect()->route('jobs.index');
 });
 
-Route::resource('/jobs', JobController::class)->only(['index']);
+Route::resource('/jobs', JobController::class)->only(['index', 'show']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
