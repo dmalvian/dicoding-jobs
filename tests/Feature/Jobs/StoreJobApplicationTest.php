@@ -45,7 +45,7 @@ class StoreJobApplicationTest extends TestCase
         $user = User::factory()->create();
         $appliedJobs = Job::factory()->count(3)->create();
         $unappliedJob = Job::factory()->create();
-    
+
         foreach ($appliedJobs as $job) {
             JobApplication::factory()->count(3)->create([
                 'user_id' => $user->id,
@@ -58,5 +58,38 @@ class StoreJobApplicationTest extends TestCase
 
         $response->assertRedirect(route('jobs.show', ['job' => $unappliedJob->id]));
         $response->assertSessionHas('message', 'Maaf, Anda hanya dapat memiliki maksimal tiga lamaran aktif.');
+    }
+
+    public function test_should_fail_if_any_mandatory_fields_not_filled()
+    {
+        $user = User::factory()->create();
+        $job = Job::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('jobs.applications.store', ['job' => $job->id]), [
+            'name' => '',
+            'email' => '',
+            'phone' => '',
+            'cover_letter' => '',
+            'cv_link' => '',
+            'skills' => '',
+            'other' => '',
+        ]);
+
+        $response->assertInvalid(['name', 'email', 'phone', 'cover_letter', 'cv_link']);
+    }
+
+    public function test_should_fail_if_fields_not_passed_validation()
+    {
+        $user = User::factory()->create();
+        $job = Job::factory()->create();
+        $application = JobApplication::factory()->make([
+            'email' => 'abc',
+            'cv_link' => 'abc',
+        ]);
+
+        $response = $this->actingAs($user)
+            ->post(route('jobs.applications.store', ['job' => $job->id]), $application->toArray());
+
+        $response->assertInvalid(['email', 'cv_link']);
     }
 }

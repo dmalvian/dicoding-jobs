@@ -38,5 +38,13 @@ class JobApplicationController extends Controller
                 ->route('jobs.show', ['job' => $job->id])
                 ->with('message', 'Maaf, Anda hanya dapat memiliki maksimal tiga lamaran aktif.');
         }
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'cover_letter' => 'required',
+            'cv_link' => 'required|url',
+        ]);
     }
 }
