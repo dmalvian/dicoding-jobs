@@ -5,8 +5,11 @@ import { FiArrowUpRight } from 'react-icons/fi';
 import { BiBuildings, BiMap  } from 'react-icons/bi';
 import { FiUsers, FiHeart, FiShare } from 'react-icons/fi';
 import { formatContractType } from '@/utils';
+import Moment from 'moment';
 
 export default function Detail({ auth, errors, job }) {
+    const isExpired = Moment().isAfter(job.expired_at, 'day');
+
     return (
         <BaseLayout
             auth={auth}
@@ -37,10 +40,15 @@ export default function Detail({ auth, errors, job }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex justify-end">
+                            <div className="flex items-center justify-end">
                                 <button className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 focus:shadow-outline"><FiShare /></button>
                                 <button className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 focus:shadow-outline"><FiHeart /></button>
-                                <Link href={route('jobs.applications.create', job.id)} className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
+                                {isExpired && (
+                                    <p className="m-2 font-semibold text-navy">Lowongan Selesai</p>
+                                )}
+                                {!isExpired && (
+                                    <Link href={route('jobs.applications.create', job.id)} className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
+                                )}
                             </div>
                         </div>
                     </div>
