@@ -7,7 +7,7 @@ import { FiUsers, FiHeart, FiShare } from 'react-icons/fi';
 import { formatContractType } from '@/utils';
 import Moment from 'moment';
 
-export default function Detail({ auth, errors, job }) {
+export default function Detail({ auth, errors, job, isApplied }) {
     const isExpired = Moment().isAfter(job.expired_at, 'day');
 
     return (
@@ -46,7 +46,10 @@ export default function Detail({ auth, errors, job }) {
                                 {isExpired && (
                                     <p className="m-2 font-semibold text-navy">Lowongan Selesai</p>
                                 )}
-                                {!isExpired && (
+                                {isApplied && (
+                                    <p className="m-2 font-semibold text-navy">Telah Dilamar</p>
+                                )}
+                                {(!isExpired && !isApplied) && (
                                     <Link href={route('jobs.applications.create', job.id)} className="inline-flex items-center h-8 px-4 m-2 text-sm font-medium text-white bg-navy focus:shadow-outline">Kirim Lamaran</Link>
                                 )}
                             </div>
