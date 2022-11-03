@@ -4,6 +4,7 @@ import { Head, Link } from '@inertiajs/inertia-react';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { BiBuildings, BiMap  } from 'react-icons/bi';
 import { FiUsers, FiHeart, FiShare } from 'react-icons/fi';
+import { formatContractType } from '@/utils';
 
 export default function Detail({ auth, errors, job }) {
     return (
@@ -47,7 +48,7 @@ export default function Detail({ auth, errors, job }) {
                 <div className="border border-b-0 border-gray-200 mt-8 md:mt-12 mb-8"></div>
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <p className="p-2 rounded-full bg-blue-50 text-blue-500 border border-blue-400 text-xs font-semibold w-fit">
-                        {job.contract_type}
+                        {formatContractType(job.contract_type)}
                     </p>
                     <h2 className="text-xl font-semibold mt-3">Tentang Perusahaan</h2>
                     <p className="text-gray-700 mt-2">{job.about_company}</p>

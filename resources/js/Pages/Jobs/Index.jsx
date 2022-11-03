@@ -1,38 +1,14 @@
 import React from 'react';
 import BaseLayout from '@/Layouts/BaseLayout';
 import { Head } from '@inertiajs/inertia-react';
-import Moment from 'moment';
 import Header from '@/Components/Header';
 import JobsList from '@/Components/Jobs/JobsList';
 import JobsListFilter from '@/Components/Jobs/JobsListFilter';
 import Pagination from '@/Components/Pagination';
+import { formatDate, formatContractType, formatExperience } from '@/utils';
 
 export default function Index(props) {
-    const formatDate = (date) => Moment(date).format('DD MMMM YYYY');
-
-    const formatContractType = (contractType) => {
-        const contractTypes = {
-            fulltime: 'Full-Time',
-            freelance: 'Freelance',
-            intern: 'Internship',
-            remote: 'Bisa Remote',
-        }
-
-        return contractTypes[contractType];
-    }
-
-    const formatExperience = (experience) => {
-        const experiences = {
-            'freshgraduate': 'Freshgraduate',
-            '1-3': '1-3 tahun pengalaman',
-            '3-5': '3-5 tahun pengalaman',
-            '5-10': '5-10 tahun pengalaman',
-            '>10': '>10 tahun pengalaman',
-        }
-
-        return experiences[experience];
-    }
-
+    
     return (
         <BaseLayout
             auth={props.auth}
