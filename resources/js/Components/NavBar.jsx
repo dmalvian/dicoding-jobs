@@ -28,8 +28,8 @@ export default function NavBar({ auth }) {
                         </div>
                         <div className="hidden h-2.5 border-l-2 m-auto sm:ml-5 sm:flex"></div>
                         <div className="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                            <NavLink href="/">Looking for job</NavLink>
-                            <NavLink href="/">Hiring</NavLink>
+                            <NavLink href={route('jobs.index')}>Looking for job</NavLink>
+                            <NavLink href="#">Hiring</NavLink>
                         </div>
                     </div>
 
